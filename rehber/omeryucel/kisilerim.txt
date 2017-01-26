@@ -1,2 +1,4 @@
-Ömer	Yücel	05534603384	Çanakkale	omeryucel94@gmail.com<br>
-Yunus	Emre	05443583362	Çanakkale	yunusemrekucuk17@gmail.com<br>
+﻿Ahmet	Olgun	05426809015	Çanakkale	ahmetolgun@gmail.com
+Yunus	Emre	0555984556	Çanakkale	yunusemrekucuk17@gmail.com
+Ömer	Yücel	05534603384	Çanakkale	omeryucel94@gmail.com
+Batuhan	Çetin	05362225050	Çanakkale	batucetin@gmail.com

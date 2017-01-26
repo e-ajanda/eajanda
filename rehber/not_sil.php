@@ -31,6 +31,11 @@
 			color:#801a00;;
 		}
 		
+		h4
+		{
+			color:#801a00;
+		}
+		
 	</style>
 
 	<title>Telefon Rehberi</title>
@@ -48,10 +53,10 @@
 	</table>
 	
 	<div id="rehber" align="center">
-		<u><h2> Not Ekleme </h2></u>
+		<u><h2> Not Sil </h2></u>
 	</div>
 	
-	<h3 align="center"> Eklenecek Notu Giriniz! </h3>
+	<h4 align="center"> Silinecek Notu Seçiniz! </h4>
 
 	<div id="icerik" align="center">
 		
@@ -63,8 +68,6 @@
 					<th> Adı : </th>
 					<td> <input type="text" name="ad" maxlength="20" /> </td>
 				</tr>
-					
-				 
 					
 				<tr align="center">
 					

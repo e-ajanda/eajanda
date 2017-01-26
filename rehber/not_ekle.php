@@ -2,9 +2,9 @@
 	
 	include('../session.php');
 	header('Content-Type: text/html; charset=utf-8');
-	$bugun = getdate();
 	
-	$tarih=$bugun['mday']. "." .$bugun['mon']. "." .$bugun['year']. "-" .$bugun['hours']. "_" .$bugun['minutes']. "_" .$bugun['seconds']; 
+	$error='';$error2='';
+	
 	
 	/*
 	[seconds] => 40
@@ -17,20 +17,27 @@
 	
 	if(isset($_POST['girilenNot']))	
 	{
-		$dosya = fopen("$login_user/notlar/$tarih.txt","w");
-		
 		$girilenNot=$_POST['girilenNot'];
+		if(strlen($girilenNot)==0)
+			$error2='Not Alanı Boş Geçilemez!';
 		
-		$kontrol1=fwrite($dosya,$girilenNot);
-		$kontrol2=fwrite($dosya,"<br>\r\n");
-		
-		if($kontrol1 && $kontrol2)
-			print("<p> Girilen Not Başarıyla Kaydedilmiştir! </p>");
 		else
-			print("Girilen Not Kaydedilememiştir!");
-		
-		fclose($dosya);
-		
+		{
+			$bugun=getdate();
+			$tarih=$bugun['mday']. "." .$bugun['mon']. "." .$bugun['year']. "-" .$bugun['hours']. "_" .$bugun['minutes']. "_" .$bugun['seconds']; 
+			$dosya = fopen("$login_user/notlar/$tarih.txt","w");
+			
+			$kontrol1=fwrite($dosya,$girilenNot);
+			$kontrol2=fwrite($dosya,"\r\n");
+			
+			if($kontrol1 && $kontrol2)
+				$error="Girilen Not Başarıyla Kaydedilmiştir!";
+				
+			else
+				$error="Girilen Not Kaydedilememiştir!";
+			
+			fclose($dosya);
+		}
 		
 	}
 ?>
@@ -61,7 +68,7 @@
 			color:#801a00;
 		}
 		
-		h3
+		h4
 		{
 			color:#801a00;
 		}
@@ -83,10 +90,10 @@
 	</table>
 	
 	<div id="rehber" align="center">
-		<u><h2> Not Ekleme </h2></u>
+		<u><h2> Not Ekle </h2></u>
 	</div>
 	
-	<h3 align="center"> Eklenecek Notu Giriniz! </h3>
+	<h4 align="center"> Eklenecek Notu Giriniz! </h4>
 
 	</br>
 	
@@ -94,25 +101,27 @@
 		
 		<form method="POST" action="">
 			
-			<table align="center" cellspacing="30" style="font-size:25px;" background="../img/wallpaper4.jpg">
+			<table align="center" cellspacing="30" style="font-size:20px;" background="../img/wallpaper4.jpg">
 				
 				<tr align="left">
-					<th> Not : </th>
-					<td> <textarea rows="10" cols="50" placeholder="Notunuzu Giriniz" maxlength="500" name="girilenNot"></textarea>  </td>
+					<th> NOT : </th>
+					<td> <textarea rows="10" cols="50" placeholder="Eklenecek Notunuzu Giriniz!" maxlength="500" name="girilenNot" style="resize:none;"></textarea>  </td>
 				</tr>
 						
 				<tr align="center">
-					
 					<td>  </td>
 					<td> <input type="submit" value="Kaydet" /> <input type="reset" value="Temizle" />  </td>
-					
 				</tr>
+				
+				<tr>
+					<td align="center" colspan="3">
+						<span style="color:red; font-size:16px; "><?php echo $error; ?><?php echo $error2; ?></span> <br>
+					</td>
+				<tr>
 				
 			</table>
 			
 		</form>
-		
-		
 		
 	</div>
 	
