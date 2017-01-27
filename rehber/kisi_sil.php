@@ -200,7 +200,7 @@
 				 
 				<tr>
 					<td align="center" colspan="6">
-						<span style="color:red; font-size:16px; "><?php echo $error2; ?><?php echo $error3; ?></span> <br>
+						<span style="color:red; font-size:16px; "><?php echo $error; ?><?php echo $error2; ?><?php echo $error3; ?></span> <br>
 					</td>
 				<tr>
 				
