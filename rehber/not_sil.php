@@ -3,6 +3,27 @@
 	include('../session.php');
 	header('Content-Type: text/html; charset=utf-8');
 	
+	$error='';
+	$konum="$login_user/notlar";
+	
+	if( isset($_POST['not']) )
+	{
+		$dosyaAdi=$_POST['not'];
+		
+		if($dosyaAdi=="-1")
+			$error='Silinecek Notu Seçiniz!';
+		
+		else
+		{
+			$sonuc=unlink("$konum/$dosyaAdi");
+			if($sonuc==true)
+				$error='Silme İşlemi Başarıyla Gerçekleşmiştir!';
+				
+			else
+				$error='Silme İşlemi Gerçekleştirilememiştir!';	
+		}
+	}	
+	
 ?>
 
 
@@ -59,30 +80,75 @@
 	<h4 align="center"> Silinecek Notu Seçiniz! </h4>
 
 	<div id="icerik" align="center">
-		
+		<?php
+			
+			$dosyalar=scandir($konum);
+			$uzunluk=count($dosyalar);
+		?>
 		<form method="POST" action="">
 			
 			<table align="center" cellspacing="30" style="font-size:25px;" background="../img/wallpaper4.jpg">
 				
 				<tr align="left">
-					<th> Adı : </th>
-					<td> <input type="text" name="ad" maxlength="20" /> </td>
+					<td> 
+						<select name="not">
+							<option value="-1" selected>Not Seçiniz!</option>
+							<?php for($i=2;$i<$uzunluk;$i++)
+							{  
+							?> 
+								
+								<option value="<?php echo $dosyalar[$i]; ?>" > <?php echo $dosyalar[$i]; ?> </option>
+                 
+							<?php
+							} 
+							?>
+						</select>
+					</td>
 				</tr>
 					
 				<tr align="center">
-					
-					<td>  </td>
-					<td> <input type="submit" value="Kaydet" /> <input type="reset" value="Temizle" />  </td>
-					
+					<td align="center"> 
+						<input type="submit" value="Notu Sil" /> 
+						<input type="button" value="İptal" onclick="window.location.href='../notlar.php' " /> 
+					</td>
+	
 				</tr>
 				
 			</table>
 			
 		</form>
-		
-		
-		
+		<br/>
 	</div>
+	
+	
+	<?php
+	
+		$dosyalar=scandir($konum);
+		$uzunluk=count($dosyalar);
+	
+		print("<h3 align=\"center\"> Kayıtlı Olan Notlar: </h3>");
+		print("<table align=\"center\" width=\"50%\" border=\"6\" cellspacing=\"0\" cellpadding=\"0\" background=\"../img/wallpaper6.jpg\" style=\"border: 1px solid black; text-align:center; font-size:20px; \" >");
+		print("<tr>");
+		print("<th> NOT ADI </th>");
+		print("<th> NOT İÇERİĞİ </th>");
+		print("</tr>");
+		
+		for($i=2;$i<$uzunluk;$i++)
+		{
+			$dosya=fopen("$login_user/notlar/$dosyalar[$i]",'r') or die("Dosya Açılamadı!");	
+			print("<tr align=\"left\">");
+			print("<th align=\"center\">". $dosyalar[$i]."</th>");
+			while( !feof($dosya) )
+			{
+				$notlar=fgets($dosya);	
+				if(strlen($notlar)!=0)
+					print("<td>". $notlar."</td>");	
+			}
+			print("</tr>");
+			fclose($dosya);
+		}
+		print("</table>");
+	?>
 	
 </body>
 
