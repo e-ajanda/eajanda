@@ -183,18 +183,18 @@
 					
 				 <tr align="center">
 					<th> Adı : </th>
-					<td> <input type="text" name="ad" maxlength="20" value="<?php echo "$bulunanAd" ?>" /> </td>
+					<td> <input type="text" name="ad" maxlength="20" value="<?php echo "$bulunanAd" ?>" readonly /> </td>
 					<th> Soyadı : </th>
-					<td> <input type="text" name="soyad" maxlength="20" value="<?php echo "$bulunanSoyad" ?>" /> </td>
+					<td> <input type="text" name="soyad" maxlength="20" value="<?php echo "$bulunanSoyad" ?>" readonly /> </td>
 					<th> Numarası : </th>
-					<td> <input type="text" name="numara" maxlength="11" value="<?php echo "$bulunanNumara" ?>" /> </td>
+					<td> <input type="text" name="numara" maxlength="11" value="<?php echo "$bulunanNumara" ?>" readonly /> </td>
 				</tr>
 							
 				<tr align="center">
 					<th> Adresi : </th>
-					<td> <input type="text" name="adres" maxlength="50" value="<?php echo "$bulunanAdres" ?>" /> </td>
+					<td> <input type="text" name="adres" maxlength="50" value="<?php echo "$bulunanAdres" ?>" readonly /> </td>
 					<th> Mail Adresi : </th>
-					<td> <input type="text" name="mail" maxlength="30" value="<?php echo "$bulunanEmail" ?>"/> </td>
+					<td> <input type="text" name="mail" maxlength="30" value="<?php echo "$bulunanEmail" ?>" readonly /> </td>
 					<td align="center" colspan="6"> <input type="submit" value="Kişiyi Sil" /> <input type="button" value="İptal" onclick="window.location.href='../rehber.php' " /> </td>
 				</tr>
 				 
